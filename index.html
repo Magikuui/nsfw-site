@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Silêncio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: black;
+      font-family: 'Share Tech Mono', monospace;
+      overflow: hidden;
+      cursor: url('https://cur.cursors-4u.net/holidays/hol-1/hol45.cur'), auto;
+    }
+
+    #entry-screen, #main-content {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    #entry-screen {
+      background: black url('background.jpeg') no-repeat center center;
+      background-size: cover;
+      z-index: 10;
+    }
+
+    #entry-screen button {
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: red;
+      cursor: pointer;
+      margin-top: 20px;
+      text-shadow: 1px 1px 5px red;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    #main-content {
+      background: url('background.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      display: none;
+      color: white;
+      animation: fadeIn 3s ease-in forwards;
+    }
+
+    .text {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px 40px;
+      border-radius: 12px;
+      font-size: 2.5rem;
+      color: red;
+      text-shadow: 2px 2px 10px red;
+      animation: glitch 1s infinite;
+    }
+
+    .subtext {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #ccc;
+      opacity: 0.8;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes glitch {
+      0% { transform: skew(0deg); }
+      20% { transform: skew(-2deg); }
+      40% { transform: skew(2deg); }
+      60% { transform: skew(-1deg); }
+      80% { transform: skew(1deg); }
+      100% { transform: skew(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="entry-screen">
+    <button onclick="startExperience()">Entrar</button>
+  </div>
+
+  <div id="main-content">
+    <audio id="audio" loop>
+      <source src="audio.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+    <div class="text">Cala a boca, puta.</div>
+    <div class="subtext">você escolheu ficar. não há como voltar.</div>
+  </div>
+
+  <script>
+    function startExperience() {
+      document.getElementById('entry-screen').style.display = 'none';
+      document.getElementById('main-content').style.display = 'flex';
+      document.getElementById('audio').play();
+    }
+
+    // Se demorar mais de 10 segundos, o botão some
+    setTimeout(() => {
+      const btn = document.querySelector('#entry-screen button');
+      if (btn) btn.style.display = 'none';
+    }, 10000);
+  </script>
+</body>
+</html>
